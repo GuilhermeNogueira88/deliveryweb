@@ -1,3 +1,18 @@
-<p>
-  lista-categorias works!
-</p>
+<h3>Categorias</h3>>
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Nome</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let categoria of categorias | async">
+      <td>{{categoria.key}}</td>
+      <td>{{categoria.nome}}</td>
+      <td>{{categoria.descricao}}</td>
+    </tr>
+  </tbody>
+</table>
+
