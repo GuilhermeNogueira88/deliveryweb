@@ -13,6 +13,9 @@ import { ListaCategoriasComponent } from './categorias/lista-categorias/lista-ca
 import { environment } from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+
+
+
 @
 NgModule({
   declarations: [
@@ -30,7 +33,8 @@ NgModule({
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
