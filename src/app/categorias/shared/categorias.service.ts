@@ -11,7 +11,7 @@ categoriasRef: AngularFireList<any>;
     this.categoriasRef = this.db.list('categorias/');
   }
   insert(categoria: any) {
-
+return this.categoriasRef.push(categoria);
   }
 
   update(categoria: any, key: string) {
@@ -22,7 +22,7 @@ categoriasRef: AngularFireList<any>;
 return this.categoriasRef.snapshotChanges().pipe(
   map(changes => {
     return changes.map(m => ({key: m.payload.key, ...m.payload.val() }))
-     })
+       })
    )
  }
 
@@ -31,18 +31,17 @@ return this.categoriasRef.snapshotChanges().pipe(
   }
 
   remove(key: string) {
- // return new Promise((resolve, reject) => {
-    //   const subscribe = this.getProdutosByCategoria(key).subscribe((produtos: any) => {
-    //     subscribe.unsubscribe();
+//  return new Promise((resolve, reject) => {
+//       const subscribe = this.getProdutosByCategoria(key).subscribe((produtos: any) => {
+//         subscribe.unsubscribe();
 
-    //     if (produtos.length == 0) {
-    //       return this.categoriasRef.remove(key);
-    //     } else {
-    //       reject('Não é possível excluir a categoria pois ela tem produtos associados.')
-    //     }
-    //   });
-    // });
-    this.categoriasRef.remove(key);
+//         if (produtos.length == 0) {
+          return this.categoriasRef.remove(key);
+//         } else {
+//           reject('Não é possível excluir a categoria pois ela tem produtos associados.')
+//         }
+//       });
+//     });
   }
 
 }
