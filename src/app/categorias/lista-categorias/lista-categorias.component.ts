@@ -14,9 +14,11 @@ categorias: Observable<any[]>;
 
   constructor(private categoriasService: CategoriasService,
   private toastr: ToastrService) {}
+  
   ngOnInit() {
     this.categorias = this.categoriasService.getAll();
   }
+  
   remover(key: string) {
     this.categoriasService.remove(key)
     .catch((mensagem: string) => {

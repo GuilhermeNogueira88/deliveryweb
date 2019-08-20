@@ -22,7 +22,7 @@
           <td>{{ categoria.nome }}</td>
           <td>{{ categoria.descricao }}</td>
           <td class="edit">
-            <a class="btn btn-warning text-white" role="button" [routerLink]="['/categoria/editar', categoria.key]"><i class="far fa-edit"> editar</i></a>
+            <a class="btn btn-warning text-white" role="button" [routerLink]="['/categorias/editar', categoria.key]"><i class="far fa-edit"> editar</i></a>
           </td>
           <td class="delete">
             <button class="btn btn-danger" (click)="remover(categoria.key)"><i class="far fa-trash-alt"> excluir</i></button>
