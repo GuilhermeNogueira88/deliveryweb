@@ -18,8 +18,9 @@ export class FormProdutosComponent implements OnInit {
   categorias: Observable<any[]>;
 
   private file: File = null;
-  imgUrl: string = '';
-  filePath: string = '';
+  imgUrl = '';
+  filePath = '';
+  result: void;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +28,7 @@ export class FormProdutosComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router, 
     private categoriasService: CategoriasService,
-    private produtosService: ProdutosService
+    private produtosService: ProdutosService,
     ) { }
 
 
@@ -37,16 +38,15 @@ export class FormProdutosComponent implements OnInit {
 
     this.key = this.route.snapshot.paramMap.get('key');
     if (this.key){
-      const produtosSubscribe = this.produtosService.getByKey(this.key)
-      .subscribe((produtos:any) =>{
+      const produtosSubscribe = this.produtosService.getByKey(this.key).subscribe((produtos:any) =>{
       
         produtosSubscribe.unsubscribe();
         this.formProdutos.setValue({
-        nome:produtos.nome,
-        descricao:produtos.descricao, 
+        nome:produtos.nome, descricao:produtos.descricao, 
         preco:produtos.preco,         
         categoriaKey: produtos.categoriaKey,
-        categoriaNome: produtos.categoriaNome, 
+        categoriaNome: produtos.categoriaNome,
+        img: ''
         });
       
 
@@ -54,7 +54,7 @@ export class FormProdutosComponent implements OnInit {
 
 this.imgUrl = produtos.img || '';
 this.filePath = produtos.filePath || '';
-      }
+      });
     }
 }  
 
@@ -107,15 +107,25 @@ removeImg() {
 
   onSubmit(){
   if (this.formProdutos.valid) {
+    let result: Promise<{}>;
 
-    this.produtosService.update(this.formProdutos.value, this.key);
-     if (this.key) {
-     } else {
-       this.produtosService.insert(this.form.value);
-     }
-     this.router.navigate(['produtos']);
-     this.toastr.success('Produto salvo com sucesso!!!');
-   
+ if (this.key) {
+          result = this.produtosService.update(this.formProdutos.value, this.key);
+        } else {
+          result = this.produtosService.insert(this.formProdutos.value);
+        }
+
+        if (this.file) {
+          result.then( (key: string) => {
+            this.produtosService.uploadImg(key, this.file);
+            this.criarFormulario();
+          });
+        } else {
+          this.criarFormulario();
+        }
+
+        this.router.navigate(['produtos']);
+        this.toastr.success('Produtos salvo com sucesso!!!');
       }
     }
 

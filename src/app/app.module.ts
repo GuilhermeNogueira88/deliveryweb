@@ -17,6 +17,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { FormProdutosComponent } from './produtos/form-produtos/form-produtos.component';
 import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 
 
@@ -43,6 +44,7 @@ NgModule({
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     ToastrModule.forRoot()
   ],
   providers: [],
