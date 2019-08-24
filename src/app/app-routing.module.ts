@@ -1,4 +1,4 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
