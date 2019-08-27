@@ -15,9 +15,13 @@ import { ListaCategoriasComponent } from './categorias/lista-categorias/lista-ca
 import { environment } from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormProdutosComponent } from './produtos/form-produtos/form-produtos.component';
 import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos.component';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import { LoginComponent } from './usuarios/login/login.component';
+import { EsqueciSenhaComponent } from './usuarios/esqueci-senha/esqueci-senha.component';
+import { CriarContaComponent } from './usuarios/criar-conta/criar-conta.component';
 
 
 
@@ -33,8 +37,11 @@ NgModule({
     FormCategoriasComponent,
     ListaCategoriasComponent,
     FormProdutosComponent,
-    ListaProdutosComponent
-
+    ListaProdutosComponent,
+    LoginComponent,
+    EsqueciSenhaComponent,
+    CriarContaComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -43,9 +50,11 @@ NgModule({
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     ToastrModule.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent]

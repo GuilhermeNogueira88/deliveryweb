@@ -58,8 +58,8 @@ criarFormulario() {
 
   onSubmit() {
     if (this.formCategoria.valid) {
-     this.categoriasService.update(this.formCategoria.value, this.key);
       if (this.key) {
+     this.categoriasService.update(this.formCategoria.value, this.key);
       } else {
         this.categoriasService.insert(this.formCategoria.value);
       }
