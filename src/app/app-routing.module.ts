@@ -16,18 +16,18 @@ const routes: Routes = [
 {
   path: '',
   component: HomeLayoutComponent,
+  // a diretiva AuthGuard serve para regular a rotas que só poderão ser acessadas apos o login
   canActivate: [AuthGuard],
+  // aqui estão os path's e os respectivos componentes, ou seja o caminho na url e a pagina que abrirá
   children: [
     {path: 'dashboard', component: DashboardComponent},
-    
     {path: 'categorias', component: ListaCategoriasComponent},
     {path: 'categorias/nova', component: FormCategoriasComponent},
     {path: 'categorias/editar/:key', component: FormCategoriasComponent},
-    
     {path: 'produtos', component:ListaProdutosComponent},
     {path: 'produtos/novo', component: FormProdutosComponent},
     {path: 'produtos/editar/:key', component: FormProdutosComponent},
-
+// o path vazio "path: '' " será direcionado para rota especificada no "redirectTo", e o patchMatch significa para começar da raiz
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'}
 
   ]
@@ -43,7 +43,7 @@ const routes: Routes = [
       { path: 'esqueci-senha', component:  EsqueciSenhaComponent}
     ]
   },
-  { path: '**', redirectTo:''}
+  { path: '**', redirectTo: ''}
 
 ];
 

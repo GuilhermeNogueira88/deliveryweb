@@ -10,16 +10,20 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./lista-categorias.component.css']
 })
 export class ListaCategoriasComponent implements OnInit {
-categorias: Observable<any[]>;
+// Observable é um objeto um array de valores, ele precisa ser importado
+  categorias: Observable<any[]>;
 
   constructor(private categoriasService: CategoriasService,
   private toastr: ToastrService) {}
-  
+
+
   ngOnInit() {
+    // getAll traz tudo do banco de dados, se quiser trazer especificico tem que ser especificado os parametros entre parenteses
     this.categorias = this.categoriasService.getAll();
   }
-  
+
   remover(key: string) {
+  //  o metodo "remove" foi criado no categorias.service.ts
     this.categoriasService.remove(key)
     .catch((mensagem: string) => {
       this.toastr.error(mensagem);

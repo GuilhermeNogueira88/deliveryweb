@@ -10,7 +10,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./form-categorias.component.css']
 })
 export class FormCategoriasComponent implements OnInit {
+
+// formCategoria é declarado aqui para ser chamado no html, atuando depois no metodo criarFormulario
 formCategoria: FormGroup;
+// esta variavel recebe o ID(KEY)
 key: string;
 
 
@@ -27,12 +30,19 @@ constructor(private formBuilder: FormBuilder,
 
   ngOnInit() {
     this.criarFormulario();
+    // isto coloca o ID na variavel key
     this.key = this.route.snapshot.paramMap.get('key');
-    if (this.key){
+    if (this.key) {
       const categoriasSubscribe = this.categoriasService.getByKey(this.key)
-      .subscribe((categorias:any) =>{
-      categoriasSubscribe.unsubscribe();
-     this.formCategoria.setValue({nome:categorias.nome, descricao:categorias.descricao});
+      // o metôdo subscribe significa "escutar" dados no banco, até que a key que voce passou, até ele encontrar.
+      // encontrado ele guarda o resultado da consulta na variavel categorias
+      .subscribe((categorias: any) => {
+
+        // o metôdo unsubcribe é para parar de "escutar" depois de encontrado
+        categoriasSubscribe.unsubscribe();
+     // o setValue coloca os dados recebidos no input no banco,
+     // os parametros indicados exe: categorias.nome... são os dados que vão aparecer no formulario HTML no processo de UPDATE
+      this.formCategoria.setValue({nome: categorias.nome, descricao: categorias.descricao});
       });
     }
 
@@ -45,7 +55,7 @@ get descricao() { return this.formCategoria.get('descricao'); }
 
 
 
-
+// metodo serve para criar as variaveis recebidas pelo formulario
 criarFormulario() {
     this.key = null;
     this.formCategoria = this.formBuilder.group({
@@ -55,8 +65,10 @@ criarFormulario() {
   }
 
 
-
-  onSubmit() {
+  // este metôdo serve para salvar os dados inseridos no formularios e submetidos, assim salvando-os
+  onSubmit()
+  // esta estrutura condicional verifica se há dados, se não houver ele fará insert, se houver ele fará update
+  {
     if (this.formCategoria.valid) {
       if (this.key) {
      this.categoriasService.update(this.formCategoria.value, this.key);

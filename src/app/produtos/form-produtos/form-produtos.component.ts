@@ -42,6 +42,7 @@ export class FormProdutosComponent implements OnInit {
       const produtosSubscribe = this.produtosService.getByKey(this.key).subscribe((produtos: any) => {
 
         produtosSubscribe.unsubscribe();
+       // o setValue coloca os dados recebidos no input no banco.//
         this.formProdutos.setValue({
           nome: produtos.nome, descricao: produtos.descricao,
           preco: produtos.preco,
@@ -101,6 +102,7 @@ export class FormProdutosComponent implements OnInit {
     this.filePath = '';
   }
 
+  // este metôdo serve para salvar os dados inseridos no formularios e submetidos, assim salvando-os
   onSubmit() {
     if (this.formProdutos.valid) {
       let result: Promise<{}>;

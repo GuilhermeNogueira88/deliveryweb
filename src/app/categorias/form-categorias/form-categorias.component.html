@@ -1,6 +1,7 @@
 
   <h3>Nova categoria</h3>
   <hr>
+
   <form [formGroup]="formCategoria" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
@@ -8,6 +9,7 @@
       <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome">
     </div>
     <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">
+     <!-- diretiva IF para ver ser o campo nome está vazio -->
       <div *ngIf="nome.errors?.required">
         O nome é obrigatório.
       </div>
@@ -16,7 +18,9 @@
       <label for="nome">Descrição</label>
       <input type="text" class="form-control" id="descricao" placeholder="Descrição da categoria" formControlName="descricao">
     </div>
+    <!-- o botão do tipo submit serve para salvar, mas ele sempre dependerá da declaração do metôdo ngSubmit   -->
     <button type="submit" class="btn btn-primary">Salvar</button>
+    <!-- a qui temos a criação de um input do tipo buttom, e a diretiva de rotas o [routerLink] e a respectiva rota a ser seguida -->
     <a class="btn btn-secondary ml-2" [routerLink]="['/categorias']">Voltar</a>
 
   </form>

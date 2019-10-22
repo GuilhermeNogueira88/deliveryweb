@@ -3,6 +3,7 @@
 <hr>
 <div class="card">
   <div class="card-header text-right">
+   <!-- este input do tipo buttom estancia outra pagina pela diretiva routerLink -->
     <a class="btn btn-primary" role="button" [routerLink]="['/categorias/nova']">Nova categoria</a>
   </div>
   <div class="card-body">
@@ -17,11 +18,13 @@
         </tr>
       </thead>
       <tbody>
+        <!-- diretiva "ngFor" neste caso,um laço de repetição um FOR, faça uma variavel categoria de categorias, assincrona -->
         <tr *ngFor="let categoria of categorias | async" >
           <th scope="row">{{categoria.key}}</th>
           <td>{{ categoria.nome }}</td>
           <td>{{ categoria.descricao }}</td>
           <td class="edit">
+            <!-- o botão editar executa a diretiva routerLink, definindo uma rota mais a key -->
             <a class="btn btn-warning text-white" role="button" [routerLink]="['/categorias/editar', categoria.key]"><i class="far fa-edit"> editar</i></a>
           </td>
           <td class="delete">
