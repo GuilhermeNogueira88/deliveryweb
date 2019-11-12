@@ -48,6 +48,18 @@ return this.categoriasRef.snapshotChanges().pipe(
 
 
 
+      getProdutosByCategoria(key: string) {
+        return this.db.list('produtos/', q => q.orderByChild('categoriaKey').equalTo(key))
+        .snapshotChanges()
+        .pipe(
+          map(changes => {
+            return changes.map(m => ({ key: m.key }))
+          })
+        )
+      }
+
+
+
   remove(key: string) {
  return new Promise((resolve, reject) => {
   // faz uma "escuta" do que tem em getProdutosByCategoria pela key, e a variavel produtos recebe esta escuta
@@ -66,6 +78,7 @@ return this.categoriasRef.snapshotChanges().pipe(
       });
     });
   }
+
 
 }
 

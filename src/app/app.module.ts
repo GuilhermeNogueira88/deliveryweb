@@ -1,3 +1,5 @@
+import { DetalhePedidoComponent } from './pedidos/detalhe-pedido/detalhe-pedido.component';
+import { ListaPedidosComponent } from './pedidos/lista-pedidos/lista-pedidos.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
@@ -40,8 +42,10 @@ NgModule({
     ListaProdutosComponent,
     LoginComponent,
     EsqueciSenhaComponent,
-    CriarContaComponent
-  
+    CriarContaComponent,
+    ListaPedidosComponent,
+    DetalhePedidoComponent
+
   ],
   imports: [
     BrowserModule,

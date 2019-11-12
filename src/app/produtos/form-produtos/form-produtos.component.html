@@ -1,4 +1,4 @@
-    
+
 <h3>Novo Produto</h3>
 <hr>
 <form [formGroup]="formProdutos" (ngSubmit)="onSubmit()">
@@ -21,6 +21,7 @@
     <label for="categoriaKey">Categoria</label>
     <select class="form-control" id="categoriaKey" formControlName="categoriaKey" (change)="setCategoriaNome($event.target.selectedOptions)">
       <option value="">- Escolher -</option>
+      <!-- o valor ou seja o [value]="categoria.key" é a key, porem o que é visivel no HTML é o nome "categoria.nome" -->
       <option *ngFor="let categoria of categorias | async" [value]="categoria.key">{{ categoria.nome}}</option>
     </select>
   </div>

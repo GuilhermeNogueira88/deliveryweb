@@ -1,4 +1,6 @@
-import { NgModule } from '@angular/core';
+import { DetalhePedidoComponent } from './pedidos/detalhe-pedido/detalhe-pedido.component';
+import { ListaPedidosComponent } from './pedidos/lista-pedidos/lista-pedidos.component';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
@@ -22,6 +24,8 @@ const routes: Routes = [
   children: [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'categorias', component: ListaCategoriasComponent},
+    {path: 'pedidos', component: ListaPedidosComponent},
+    {path: 'pedidos/detalhe/:key', component: DetalhePedidoComponent },
     {path: 'categorias/nova', component: FormCategoriasComponent},
     {path: 'categorias/editar/:key', component: FormCategoriasComponent},
     {path: 'produtos', component:ListaProdutosComponent},
